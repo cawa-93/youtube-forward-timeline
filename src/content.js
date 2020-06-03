@@ -61,11 +61,12 @@ function addButton() {
 	next = document.createElement('button');
 	next.id = 'next-timeline';
 	next.className = 'ytp-button';
-	next.style.cssText = '    display: inline-flex;\n'
-	                     + '    justify-content: center;\n'
-	                     + '    align-items: center;\n'
-	                     + 'transform: translateY(-5px);';
-	next.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="#ffffff"/></svg>`;
+	next.style.cssText = 'display: inline-flex;'
+	                     + 'justify-content: center;'
+	                     + 'align-items: center;'
+	                     + 'vertical-align: top';
+
+	next.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style="width: auto;height: 65%;" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="#ffffff"/></svg>`;
 
 	play.insertAdjacentElement('afterend', next);
 	return next;
