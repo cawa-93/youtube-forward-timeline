@@ -3,8 +3,9 @@
  * @return {number[]}
  */
 function getSections() {
+	const id = new URL(location.href).searchParams.get('v')
 	return Array
-		.from(document.body.querySelectorAll('#description a[href*="' + location.search + '&t="]'))
+		.from(document.body.querySelectorAll('#description a[href*="/watch"][href*="t="][href*="v=' + id + '"]'))
 		.map(a => {
 			const u = new URL(a.href);
 			const time = u.searchParams.get('t');
