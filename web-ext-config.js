@@ -15,8 +15,4 @@ module.exports = {
 		browserConsole: true,
 	},
 
-	lint: {
-		warningsAsErrors: process.env.GITHUB_ACTIONS || false
-	}
-
 };
