@@ -1,0 +1,26 @@
+{
+  "name": "youtube-next-section",
+  "version": "0.0.1",
+  "description": "Adds a fast forward button to the next section",
+  "main": "src/content.js",
+  "private": true,
+  "scripts": {
+    "build": "web-ext --config=web-ext-config.js build",
+    "lint": "web-ext --config=web-ext-config.js lint",
+    "start": "web-ext --config=web-ext-config.js run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cawa-93/youtube-forward-timeline.git"
+  },
+  "author": "Alex Kozack <kozackunisoft@gmail.com> (https://t.me/kozack)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cawa-93/youtube-forward-timeline/issues"
+  },
+  "homepage": "https://github.com/cawa-93/youtube-forward-timeline#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "web-ext": "^4.2.0"
+  }
+}

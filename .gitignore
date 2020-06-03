@@ -1,2 +1,3 @@
-web-ext-artifacts
-.zip
+dist
+.idea
+node_modules
