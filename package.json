@@ -5,9 +5,9 @@
   "main": "src/content.js",
   "private": true,
   "scripts": {
-    "build": "web-ext --config=web-ext-config.js build",
-    "lint": "web-ext --config=web-ext-config.js lint",
-    "start": "web-ext --config=web-ext-config.js run"
+    "build": "web-ext build",
+    "lint": "web-ext lint",
+    "start": "web-ext run"
   },
   "repository": {
     "type": "git",
