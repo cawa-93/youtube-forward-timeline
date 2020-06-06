@@ -7,7 +7,8 @@
   "scripts": {
     "build": "web-ext build",
     "lint": "web-ext lint",
-    "start": "web-ext run"
+    "start": "web-ext run",
+    "release": "web-ext --config=web-ext-config.js sign"
   },
   "repository": {
     "type": "git",

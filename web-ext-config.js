@@ -1,5 +1,4 @@
 const {resolve} = require('path');
-
 module.exports = {
 	verbose: false,
 
@@ -12,7 +11,7 @@ module.exports = {
 
 	run: {
 		startUrl: ['https://www.youtube.com/watch?v=RFTzqk7QG3U'],
-		browserConsole: true,
+		browserConsole: false,
 	},
 
 };
