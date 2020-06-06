@@ -2,10 +2,10 @@
  *
  * @return {number[]}
  */
-function getSections() {
-	const id = new URL(location.href).searchParams.get('v')
+function getSections(description) {
+	const id = new URL(location.href).searchParams.get('v');
 	return Array
-		.from(document.body.querySelectorAll('#description a[href*="/watch"][href*="t="][href*="v=' + id + '"]'))
+		.from(description.querySelectorAll('a[href*="/watch"][href*="t="][href*="v=' + id + '"]'))
 		.map(a => {
 			const u = new URL(a.href);
 			const time = u.searchParams.get('t');
@@ -26,14 +26,22 @@ function getNextTime(times, currentTime) {
 }
 
 
+
+
 function init() {
-	const description = document.querySelector('#description');
-	if (!description) {
-		setTimeout(init, 500);
+	if (location.pathname !== '/watch') {
 		return;
 	}
 
-	const times = getSections();
+	const description = document.querySelector('#description');
+
+	if (!description || description.textContent.trim() === '') {
+		setTimeout(init, 100);
+		return;
+	}
+
+	const times = getSections(description);
+
 	if (!times || times.length < 2) {
 		return;
 	}
@@ -41,7 +49,6 @@ function init() {
 	const next = addButton();
 
 	const video = document.body.querySelector('video');
-
 	next.onclick = () => {
 		const nextTime = getNextTime(times, video.currentTime);
 		if (nextTime > video.currentTime && nextTime < video.duration) {
@@ -74,3 +81,16 @@ function addButton() {
 
 
 init();
+
+let runOnPath;
+const mainObserver = new MutationObserver(() => {
+	if (runOnPath === location.pathname) {
+		return;
+	} else {
+		runOnPath = location.pathname;
+	}
+
+	init()
+});
+const observerConfig = {attributes: true, subtree: true, childList: true};
+mainObserver.observe(document, observerConfig);
