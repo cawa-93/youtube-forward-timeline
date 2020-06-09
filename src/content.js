@@ -1,8 +1,12 @@
+const app = document.body.querySelector('ytd-app');
+
+
 /**
  *
+ * @param {HTMLElement} description
  * @return {number[]}
  */
-function getSections(description) {
+function getChapters(description) {
 	const id = new URL(location.href).searchParams.get('v');
 	return Array
 		.from(description.querySelectorAll('a[href*="/watch"][href*="t="][href*="v=' + id + '"]'))
@@ -11,7 +15,7 @@ function getSections(description) {
 			const time = u.searchParams.get('t');
 			return parseInt(time, 10);
 		})
-		.filter(t => !isNaN(t));
+		.filter(t => !isNaN(t) && t > 0);
 }
 
 
@@ -19,52 +23,47 @@ function getSections(description) {
  *
  * @param {number[]} times
  * @param {number} currentTime
- * @return {*}
+ * @return {number}
  */
-function getNextTime(times, currentTime) {
+function getClosestChapter(times, currentTime) {
 	return Math.min(...times.filter(t => t > currentTime));
 }
 
 
+/**
+ *
+ * @return {Promise<HTMLElement>}
+ */
+function descriptionLoaded() {
+	return new Promise(resolve => {
+		let intervalId = setInterval(() => {
 
+			/**
+			 *
+			 * @type {HTMLElement}
+			 */
+			const description = app.querySelector('#description');
+			if (description && description.textContent.trim() !== '') {
+				clearInterval(intervalId);
+				resolve(description);
+			}
 
-function init() {
-	if (location.pathname !== '/watch') {
-		return;
-	}
-
-	const description = document.querySelector('#description');
-
-	if (!description || description.textContent.trim() === '') {
-		setTimeout(init, 100);
-		return;
-	}
-
-	const times = getSections(description);
-
-	if (!times || times.length < 2) {
-		return;
-	}
-
-	const next = addButton();
-
-	const video = document.body.querySelector('video');
-	next.onclick = () => {
-		const nextTime = getNextTime(times, video.currentTime);
-		if (nextTime > video.currentTime && nextTime < video.duration) {
-			video.currentTime = nextTime;
-		}
-	};
+		}, 500);
+	});
 }
 
 
-function addButton() {
-	let next = document.body.querySelector('#next-timeline');
+/**
+ *
+ * @return {HTMLButtonElement}
+ */
+function getNextChapterButton() {
+	let next = app.querySelector('#next-timeline');
 	if (next) {
 		return next;
 	}
 
-	const play = document.body.querySelector('.ytp-play-button');
+	const play = app.querySelector('.ytp-play-button');
 	next = document.createElement('button');
 	next.id = 'next-timeline';
 	next.className = 'ytp-button';
@@ -80,17 +79,37 @@ function addButton() {
 }
 
 
-init();
-
-let runOnPath;
-const mainObserver = new MutationObserver(() => {
-	if (runOnPath === location.pathname) {
+/**
+ *
+ * @return {Promise<void>}
+ */
+async function main() {
+	const isWatchPage = app.hasAttribute('is-watch-page');
+	if (!isWatchPage) {
 		return;
-	} else {
-		runOnPath = location.pathname;
 	}
 
-	init()
-});
-const observerConfig = {attributes: true, subtree: true, childList: true};
-mainObserver.observe(document, observerConfig);
+	const description = await descriptionLoaded();
+
+	const times = getChapters(description);
+
+	if (!times.length) {
+		return;
+	}
+
+	const video = app.querySelector('#ytd-player video');
+
+	const nextChapterButton = getNextChapterButton();
+
+	nextChapterButton.onclick = () => {
+		const nextTime = getClosestChapter(times, video.currentTime);
+		if (nextTime > video.currentTime && nextTime < video.duration) {
+			video.currentTime = nextTime;
+		}
+	};
+}
+
+
+main().catch(console.error);
+const mainObserver = new MutationObserver(main);
+mainObserver.observe(app, {attributeFilter: ['is-watch-page']});
