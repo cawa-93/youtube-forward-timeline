@@ -72,7 +72,7 @@ getApp().then(app => {
 	/**
 	 * @return {HTMLButtonElement}
 	 */
-	function getNextChapterButton() {
+	function createNextChapterButton() {
 		let next = app.querySelector('#next-timeline');
 		if (next) {
 			return next;
@@ -93,28 +93,36 @@ getApp().then(app => {
 		return next;
 	}
 
+	function removeNextChapterButton() {
+		let next = app.querySelector('#next-timeline');
+		if (next) {
+			next.remove()
+		}
+	}
 
-	/**
+
+		/**
 	 * @return {Promise<void>}
 	 */
 	async function main() {
 		const isWatchPage = app.hasAttribute('video-id') && !app.hidden;
 
 		if (!isWatchPage) {
+			removeNextChapterButton()
 			return;
 		}
 
 		const description = await descriptionLoaded();
 
 		const times = getChapters(description);
-
 		if (!times.length) {
+			removeNextChapterButton()
 			return;
 		}
 
 		const video = app.querySelector('#ytd-player video');
 
-		const nextChapterButton = getNextChapterButton();
+		const nextChapterButton = createNextChapterButton();
 
 		nextChapterButton.onclick = () => {
 			const nextTime = getClosestChapter(times, video.currentTime);
