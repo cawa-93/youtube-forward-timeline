@@ -93,22 +93,23 @@ getApp().then(app => {
 		return next;
 	}
 
+
 	function removeNextChapterButton() {
 		let next = app.querySelector('#next-timeline');
 		if (next) {
-			next.remove()
+			next.remove();
 		}
 	}
 
 
-		/**
+	/**
 	 * @return {Promise<void>}
 	 */
 	async function main() {
 		const isWatchPage = app.hasAttribute('video-id') && !app.hidden;
 
 		if (!isWatchPage) {
-			removeNextChapterButton()
+			removeNextChapterButton();
 			return;
 		}
 
@@ -116,7 +117,7 @@ getApp().then(app => {
 
 		const times = getChapters(description);
 		if (!times.length) {
-			removeNextChapterButton()
+			removeNextChapterButton();
 			return;
 		}
 
