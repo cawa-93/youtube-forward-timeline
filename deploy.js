@@ -19,7 +19,9 @@ deploy({
 
 	// a ReadStream containing a .zip (WebExtensions) or .xpi (Add-on SDK)
 	src: fs.createReadStream('dist/latest.zip'),
-}).catch(function(err) {
-	console.error(err);
-	process.exit(1);
-});
+})
+	.then(() => console.log('Asset uploaded'))
+	.catch(function(err) {
+		console.error(err);
+		process.exit(1);
+	});
