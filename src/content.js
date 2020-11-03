@@ -25,7 +25,7 @@ async function getApp() {
 }
 
 
-getApp().then(app => {
+getApp().then(/** @type {HTMLElement} */app => {
 
 	/**
 	 * @param {HTMLElement} description
@@ -97,7 +97,6 @@ getApp().then(app => {
 			throw new Error(`Can't find .ytp-left-controls`);
 		}
 
-		/** @type {HTMLElement} */
 		let playButtonContainer = app.querySelector('.ytp-play-button');
 
 		while (playButtonContainer.parentElement !== controlsContainer) {
