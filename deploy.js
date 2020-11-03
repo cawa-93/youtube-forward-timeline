@@ -18,7 +18,7 @@ deploy({
 	version: manifest.version,
 
 	// a ReadStream containing a .zip (WebExtensions) or .xpi (Add-on SDK)
-	src: fs.createReadStream('dist/download.zip'),
+	src: fs.createReadStream('dist/latest.zip'),
 }).catch(function(err) {
 	console.error(err);
 	process.exit(1);
