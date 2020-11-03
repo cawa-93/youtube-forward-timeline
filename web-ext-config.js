@@ -5,6 +5,8 @@ module.exports = {
 	sourceDir: resolve(__dirname, './src'),
 	artifactsDir: resolve(__dirname, './dist'),
 
+	filename: 'download.zip',
+
 	build: {
 		overwriteDest: true,
 	},
