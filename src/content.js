@@ -78,8 +78,6 @@ getApp().then(app => {
 			return next;
 		}
 
-		/** @type {HTMLButtonElement} */
-		const play = app.querySelector('.ytp-play-button');
 		next = document.createElement('button');
 		next.id = 'next-timeline';
 		next.className = 'ytp-button';
@@ -88,12 +86,25 @@ getApp().then(app => {
 		                     + 'align-items: center;'
 		                     + 'vertical-align: top';
 
-		next.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" style="width: auto;height: 65%;" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="#ffffff"/></svg>`;
+		next.innerHTML = `<svg style="width: auto;height: 65%;" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="#ffffff"/></svg>`;
 
 		const spanWrapper = document.createElement('span');
 		spanWrapper.appendChild(next);
 
-		play.parentElement.insertAdjacentElement('afterend', spanWrapper);
+		const controlsContainer = app.querySelector('.ytp-left-controls');
+
+		if (!controlsContainer) {
+			throw new Error(`Can't find .ytp-left-controls`);
+		}
+
+		/** @type {HTMLElement} */
+		let playButtonContainer = app.querySelector('.ytp-play-button');
+
+		while (playButtonContainer.parentElement !== controlsContainer) {
+			playButtonContainer = playButtonContainer.parentElement;
+		}
+
+		playButtonContainer.insertAdjacentElement('afterend', spanWrapper);
 		return next;
 	}
 
