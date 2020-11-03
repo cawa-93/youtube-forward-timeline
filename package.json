@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "web-ext build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cawa-93/youtube-forward-timeline.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/cawa-93/youtube-forward-timeline/issues"
+  },
+  "devDependencies": {
+    "web-ext": "^5.3.0"
+  }
+}
