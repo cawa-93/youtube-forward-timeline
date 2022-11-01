@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "YouTube next chapter button",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Adds a fast forward button to the next section",
   "author": "Alex Kozack <kozackunisoft@gmail.com> (https://t.me/kozack)",
   "homepage_url": "https://github.com/cawa-93/youtube-forward-timeline",
