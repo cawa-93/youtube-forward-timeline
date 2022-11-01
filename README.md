@@ -9,7 +9,10 @@ Is browser extension to quickly rewind video on YouTube to the next section.
 
 
 
-https://user-images.githubusercontent.com/1662812/118166404-f6545680-b414-11eb-8d0e-8b061c094994.mp4
+
+
+https://user-images.githubusercontent.com/1662812/199293350-30f08be4-bc17-4871-a330-e55c057d1594.mp4
+
 
 
 
