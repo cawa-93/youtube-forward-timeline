@@ -16,6 +16,6 @@ https://user-images.githubusercontent.com/1662812/199293350-30f08be4-bc17-4871-a
 
 
 
-Download:
+## Download
 - Firefox: https://addons.mozilla.org/uk/firefox/addon/youtube-next-chapter-button/
 - Chrome and others: https://github.com/cawa-93/youtube-forward-timeline/releases/latest
