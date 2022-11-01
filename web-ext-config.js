@@ -5,14 +5,14 @@ module.exports = {
 	sourceDir: resolve(__dirname, './src'),
 	artifactsDir: resolve(__dirname, './dist'),
 
-	filename: 'latest.zip',
+	// filename: 'latest.zip',
 
 	build: {
 		overwriteDest: true,
 	},
 
 	run: {
-		startUrl: ['https://www.youtube.com/watch?v=RFTzqk7QG3U'],
+		startUrl: ['https://www.youtube.com/watch?v=dLeIhrpQ1Lg'],
 		browserConsole: false,
 	},
 

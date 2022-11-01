@@ -60,7 +60,7 @@ getApp().then(/** @type {HTMLElement} */app => {
 	async function descriptionLoaded() {
 		while (true) {
 			/** @type {HTMLElement} */
-			const description = app.querySelector('#description');
+			const description = app.querySelector('#description.ytd-expandable-video-description-body-renderer[slot="content"]');
 			if (description !== null && description.textContent.trim() !== '') {
 				return description;
 			}
@@ -128,7 +128,6 @@ getApp().then(/** @type {HTMLElement} */app => {
 		}
 
 		const description = await descriptionLoaded();
-
 		const times = getChapters(description);
 		if (!times.length) {
 			removeNextChapterButton();
