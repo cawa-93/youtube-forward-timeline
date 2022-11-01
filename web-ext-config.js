@@ -5,9 +5,9 @@ module.exports = {
 	sourceDir: resolve(__dirname, './src'),
 	artifactsDir: resolve(__dirname, './dist'),
 
-	// filename: 'latest.zip',
 
 	build: {
+		filename: 'latest.zip',
 		overwriteDest: true,
 	},
 
