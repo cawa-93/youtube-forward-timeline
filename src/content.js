@@ -33,7 +33,7 @@ getApp().then(/** @type {HTMLElement} */app => {
      */
     async function descriptionLoaded() {
         while (true) {
-            console.log({struct: document.querySelectorAll('#structured-description')})
+            // console.log({struct: document.querySelectorAll('#structured-description')})
             /** @type {HTMLElement} */
             const description = app.querySelector('#description.ytd-expandable-video-description-body-renderer[slot="content"]');
             if (description !== null && description.textContent.trim() !== '') {

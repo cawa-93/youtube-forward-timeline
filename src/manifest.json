@@ -1,16 +1,17 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "YouTube next chapter button",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Adds a fast forward button to the next section",
   "author": "Alex Kozack <kozackunisoft@gmail.com> (https://t.me/kozack)",
   "homepage_url": "https://github.com/cawa-93/youtube-forward-timeline",
   "icons": {
     "373": "YouTubeRewind.png"
   },
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "strict_min_version": "55.0"
+      "id": "{40ab1417-ef94-48d7-8726-6abe7d07b123}",
+      "strict_min_version": "109.0"
     }
   },
   "content_scripts": [
