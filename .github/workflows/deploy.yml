@@ -30,7 +30,7 @@ jobs:
         run: echo "::set-output name=VERSION::$(grep -Eo '"version":.*?([^\\])",' ./src/manifest.json | grep -Eo '[0-9.]+')"
 
       - name: Upload to Firefox
-        uses: yayuyokitano/firefox-addon
+        uses: yayuyokitano/firefox-addon@v0.0.6-alpha
         with:
           api_key: ${{ secrets.FIREFOX_ISSUER }}
           api_secret: ${{ secrets.FIREFOX_SECRET }}
