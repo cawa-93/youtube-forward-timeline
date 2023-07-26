@@ -29,11 +29,29 @@ jobs:
         id: version
         run: echo "::set-output name=VERSION::$(grep -Eo '"version":.*?([^\\])",' ./src/manifest.json | grep -Eo '[0-9.]+')"
 
+      - name: Upload to Firefox
+        uses: yayuyokitano/firefox-addon
+        with:
+          api_key: ${{ secrets.FIREFOX_ISSUER }}
+          api_secret: ${{ secrets.FIREFOX_SECRET }}
+          guid: '{40ab1417-ef94-48d7-8726-6abe7d07b123}'
+          xpi_path: dist/latest.zip
 
-      - run: npm run deploy
-        env:
-          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
-          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
+      - name: Upload to Chrome
+        uses: mnao305/chrome-extension-upload@v4.0.1
+        with:
+          file-path: dist/latest.zip
+          extension-id: dnhblfjgbcgeoiidbbhephfmhamfkeak
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+
+
+#      - run: npm run deploy
+#        env:
+#          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
+#          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
 
       - name: Create Release
         id: create_release
@@ -55,3 +73,6 @@ jobs:
           asset_path: ./dist/latest.zip
           asset_name: DOWNLOAD YouTube next chapter button.zip
           asset_content_type: application/zip
+
+
+
