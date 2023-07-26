@@ -20,7 +20,7 @@ jobs:
 
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: '16'
+          node-version: '18'
 
       - run: npm ci
       - run: npm run build
@@ -46,12 +46,6 @@ jobs:
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
 
-
-
-#      - run: npm run deploy
-#        env:
-#          FIREFOX_ISSUER: ${{ secrets.FIREFOX_ISSUER }}
-#          FIREFOX_SECRET: ${{ secrets.FIREFOX_SECRET }}
 
       - name: Create Release
         id: create_release
