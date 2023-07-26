@@ -4,7 +4,8 @@
     "build": "web-ext build",
     "lint": "web-ext lint",
     "deploy": "node deploy.js",
-    "dev": "web-ext run --start-url https://www.youtube.com/watch?v=dLeIhrpQ1Lg&t=340s"
+    "dev": "web-ext run --start-url https://www.youtube.com/watch?v=dLeIhrpQ1Lg",
+    "dev:edge": "web-ext run --devtools --start-url https://www.youtube.com/watch?v=dLeIhrpQ1Lg -t chromium --chromium-binary \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\""
   },
   "repository": {
     "type": "git",
