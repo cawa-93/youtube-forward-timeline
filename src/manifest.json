@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_APP_NAME__",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "__MSG_APP_DESCRIPTION__",
   "author": "Alex Kozack <kozackunisoft@gmail.com> (https://t.me/kozack)",
   "homepage_url": "https://github.com/cawa-93/youtube-forward-timeline",
