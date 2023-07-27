@@ -1,8 +1,8 @@
 {
-  "__MSG_APP_NAME__": {
+  "APP_NAME": {
     "message": "Botón de siguiente capítulo de YouTube"
   },
-  "__MSG_APP_DESCRIPTION__": {
+  "APP_DESCRIPTION": {
     "message": "Añade un botón al reproductor de YouTube para avanzar rápidamente al siguiente capítulo de un vídeo."
   }
 }

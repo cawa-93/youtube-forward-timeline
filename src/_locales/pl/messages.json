@@ -1,8 +1,8 @@
 {
-  "__MSG_APP_NAME__": {
+  "APP_NAME": {
     "message": "Przycisk następnego rozdziału YouTube"
   },
-  "__MSG_APP_DESCRIPTION__": {
+  "APP_DESCRIPTION": {
     "message": "Dodaje do odtwarzacza YouTube przycisk umożliwiający szybkie przewijanie do następnego rozdziału filmu."
   }
 }
