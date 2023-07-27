@@ -5,7 +5,7 @@
 # Youtube forward timeline
 This extension adds a single fast-forward to next chapter button into YouTube player. See demonstration below.
 
-**❤️ If you like this extension I will be preshieted for your support**:
+**❤️ If you like this extension I will be appreciated for your support**:
 - [Buy me a coffee](https://www.buymeacoffee.com/kozack)
 - Write review by one of the links below 👇
 
