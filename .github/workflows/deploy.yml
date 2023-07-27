@@ -3,12 +3,7 @@
 
 name: Deploy
 
-on:
-  push:
-    branches: [ master ]
-    paths:
-      - 'src/*'
-      - '.github/workflows/deploy.yml'
+on: [workflow_dispatch]
 
 jobs:
   deploy:
@@ -16,57 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - run: npm ci
       - run: npm run build
 
-      - name: get version
-        id: version
-        run: echo "::set-output name=VERSION::$(grep -Eo '"version":.*?([^\\])",' ./src/manifest.json | grep -Eo '[0-9.]+')"
-
-      - name: Upload to Firefox
-        uses: yayuyokitano/firefox-addon@v0.0.6-alpha
+      - name: Browser Platform Publish
+        uses: PlasmoHQ/bpp@v3
         with:
-          api_key: ${{ secrets.FIREFOX_ISSUER }}
-          api_secret: ${{ secrets.FIREFOX_SECRET }}
-          guid: '{40ab1417-ef94-48d7-8726-6abe7d07b123}'
-          xpi_path: dist/latest.zip
-
-      - name: Upload to Chrome
-        uses: mnao305/chrome-extension-upload@v4.0.1
-        with:
-          file-path: dist/latest.zip
-          extension-id: dnhblfjgbcgeoiidbbhephfmhamfkeak
-          client-id: ${{ secrets.CHROME_CLIENT_ID }}
-          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: v${{ steps.version.outputs.VERSION }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./dist/latest.zip
-          asset_name: DOWNLOAD YouTube next chapter button.zip
-          asset_content_type: application/zip
-
-
+          keys: ${{ secrets.BPP_KEYS }}
+          file: dist/latest.zip
+          notes: "You can test addon in this video: https://www.youtube.com/watch?v=dLeIhrpQ1Lg"
 

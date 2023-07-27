@@ -7,6 +7,7 @@
     "dev": "web-ext run --start-url https://www.youtube.com/watch?v=dLeIhrpQ1Lg",
     "dev:edge": "web-ext run --devtools --start-url https://www.youtube.com/watch?v=dLeIhrpQ1Lg -t chromium --chromium-binary \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\""
   },
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cawa-93/youtube-forward-timeline.git"
