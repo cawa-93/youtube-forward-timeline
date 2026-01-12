@@ -122,11 +122,12 @@ getApp().then(/** @type {HTMLElement} */app => {
 
         next = document.createElement('button');
         next.id = 'next-timeline';
-        next.className = 'ytp-button';
+        next.className = 'ytp-play-button ytp-button';
         next.style.cssText = 'display: inline-flex;'
             + 'justify-content: center;'
             + 'align-items: center;'
-            + 'vertical-align: top';
+            + 'vertical-align: top;'
+			+ 'margin-left: 12px;';
 
         next.innerHTML = `<svg style="width: auto;height: 65%;" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="#ffffff"/></svg>`;
 
